@@ -25,7 +25,7 @@ class WebhookCommand extends ContainerAwareCommand
         if (sizeof($lists) == 0) {
             throw new \RuntimeException("No Mailchimp list has been defined. Check the your config.yml file based on MailchimpBundle's README.md");
         }
-
+	    
         foreach ($lists as $listId => $listParameters) {
             $url = $listParameters['webhook_url'].'?hooksecret='.$listParameters['webhook_secret'];
             $output->writeln('Add webhook to list: '.$listId);

@@ -53,9 +53,10 @@
 				], $options);
 			}
 			
-			return array_merge([
+			$rtn= array_merge([
 				'email_address' => $this->getEmail()
 			], $options);
+			return $rtn;
 		}
 		
 		/**

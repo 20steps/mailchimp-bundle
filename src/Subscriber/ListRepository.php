@@ -342,6 +342,22 @@
 		}
 		
 		/**
+		 * @param $listId
+		 * @return int
+		 */
+		public function getMemberCount($listId) {
+			$maxresult = 1;
+			$result = $this->mailchimp->get("lists/$listId/members", ['count'=> $maxresult]);
+			
+			if (!$this->mailchimp->success()) {
+				$this->throwMailchimpError($this->mailchimp->getLastResponse());
+			}
+			
+			$totalItems = $result['total_items'];
+			return $totalItems;
+		}
+		
+		/**
 		 * Get an array of subscribers emails from a list
 		 * @param string $listId
 		 * @return array
