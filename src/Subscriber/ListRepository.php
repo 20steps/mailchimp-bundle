@@ -156,6 +156,20 @@
 			return $result;
 		}
 		
+		public function getSubscriber($listId, $emailAddress) {
+			$subscriberHash = $this->mailchimp->subscriberHash($emailAddress);
+			$member = $this->mailchimp->get("lists/$listId/members/$subscriberHash");
+			if ($this->mailchimp->success()) {
+				return $member;
+			} else {
+				return null;
+			}
+		}
+		
+		public function isSubscriber($listId, $emailAddress) {
+			return $this->getSubscriber($listId,$emailAddress)!=null;
+		}
+		
 		/**
 		 * TODO not working with API V3... we can't change email of a user
 		 *       one possible solution is to delete old subscriber and add a new one
