@@ -156,8 +156,13 @@
 						}
 					}
 				} else {
-					$chunks = explode($delimiter,$value);
-					$count=count($chunks);
+					if ($value) {
+						$chunks = explode($delimiter, $value);
+						$count = count($chunks);
+					} else {
+						$chunks = null;
+						$count = 0;
+					}
 					for ($i=1; $i<=$chunkCount; $i++) {
 						if ($count>=$i) {
 							$this->mergeFields[$key.'_'.$i]=$chunks[$i-1];
